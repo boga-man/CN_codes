@@ -1,0 +1,65 @@
+9441644432 944164443 944164443 944164443 944164443ten
+    // for (int i = 0; i < NO_OF_PFORMS; i++)
+    // {
+    //     if ((psfd[i] = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+    //     {
+    //         perror("socket");
+    //         exit(1);
+    //     }
+
+    //     if (setsockopt(psfd[i], SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) == -1)
+    //     {
+    //         perror("setsockopt");
+    //         exit(1);
+    //     }
+
+    //     paddr[i].sin_family = AF_INET;
+    //     paddr[i].sin_addr.s_addr = INADDR_ANY;
+    //     paddr[i].sin_port = htons(PORT + i + 1);
+
+    //     if (bind(psfd[i], (struct sockaddr*)&paddr[i], sizeof(paddr[i])) == -1)
+    //     {
+    //         perror("bind");
+    //         exit(1);
+    //     }
+
+    //     if (listen(psfd[i], 3) == -1)
+    //     {
+    //         perror("listen");
+    //         exit(1);
+    //     }
+    // }
+
+
+------------------------------------------------------------------------------------------
+
+
+    // create socket for platforms to communicate with server
+    // if((psfd = socket(AF_INET, SOCK_STREAM, 0)) == -1){
+    //     perror("socket");
+    //     exit(1);
+    // }
+
+    // // set socket options
+    // if(setsockopt(psfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) == -1){
+    //     perror("setsockopt");
+    //     exit(1);
+    // }
+
+    // // setup the paddr structure
+    // memset(&paddr, 0, sizeof(paddr));
+    // paddr.sin_family = AF_INET;
+    // paddr.sin_addr.s_addr = INADDR_ANY;
+    // paddr.sin_port = htons(PORT);
+
+    // // bind this socket to the address
+    // if(bind(psfd, (struct sockaddr*)&paddr, sizeof(paddr)) == -1){
+    //     perror("bind");
+    //     exit(1);
+    // }
+
+    // // listening for the connections
+    // if(listen(psfd, 3) == -1){
+    //     perror("listen");
+    //     exit(1);
+    // }
