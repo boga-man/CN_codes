@@ -1,0 +1,1 @@
+cmd_/home/manoj/Documents/Sem6/CN/Assignments/DD/Module.symvers := sed 's/\.ko$$/\.o/' /home/manoj/Documents/Sem6/CN/Assignments/DD/modules.order | scripts/mod/modpost -m -a  -o /home/manoj/Documents/Sem6/CN/Assignments/DD/Module.symvers -e -i Module.symvers   -T -

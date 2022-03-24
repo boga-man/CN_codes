@@ -1,0 +1,4 @@
+echo stream tcp wait root echoService
+capitalToSmall stream tcp nowait|DEBUG root capitalToSmall
+timeService dgram udp wait  root timeService 
+smallToCapital stream tcp nowait|DEBUG root smallToCapital

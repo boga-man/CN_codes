@@ -1,0 +1,1 @@
+cmd_/home/manoj/Documents/Sem6/CN/Assignments/DD/driver.ko := ld -r  -m elf_x86_64  --build-id=sha1  -T scripts/module.lds -o /home/manoj/Documents/Sem6/CN/Assignments/DD/driver.ko /home/manoj/Documents/Sem6/CN/Assignments/DD/driver.o /home/manoj/Documents/Sem6/CN/Assignments/DD/driver.mod.o;  true
