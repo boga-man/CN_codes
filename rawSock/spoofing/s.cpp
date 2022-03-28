@@ -40,14 +40,14 @@ void printIPHeader(struct iphdr *ip)
 }
 int main()
 {
-    int s = socket(PF_INET, SOCK_RAW, 1);
+    int s = socket(AF_INET, SOCK_RAW, 1);
     int one = 1;
     const int *val = &one;
-    if (setsockopt(s, IPPROTO_IP, IP_HDRINCL, val, sizeof(one)) < 0)
-    {
-        cout << "could not enable HDRINCL...\n";
-        exit(1);
-    }
+    // if (setsockopt(s, IPPROTO_IP, IP_HDRINCL, val, sizeof(one)) < 0)
+    // {
+    //     cout << "could not enable HDRINCL...\n";
+    //     exit(1);
+    // }
     struct sockaddr_in addr, client;
     socklen_t len = sizeof(client);
     char buff[MAXLINE];

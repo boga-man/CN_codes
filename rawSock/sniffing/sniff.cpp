@@ -54,10 +54,10 @@ int main()
     signal(SIGINT, handler);
 
     // creating a raw socket to sniff
-    int sfd;
+    int rsfd;
     struct sockaddr_in clientAddr;
     int len = sizeof(clientAddr);
-    if ((sfd = socket(AF_INET, SOCK_RAW, IPPROTO_TCP)) < 0)
+    if ((rsfd = socket(AF_INET, SOCK_RAW, IPPROTO_TCP)) < 0)
     {
         perror("socket creation failed");
         exit(EXIT_FAILURE);
@@ -68,7 +68,7 @@ int main()
     {
         unsigned char buffer[MAXLINE];
         // this will not only rec message but also the client addr
-        int packetSize = recvfrom(sfd, (char *)buffer, MAXLINE,
+        int packetSize = recvfrom(rsfd, (char *)buffer, MAXLINE,
                                   0, (sockaddr *)&clientAddr,
                                   (socklen_t *)&len);
         if (packetSize <= 0)
@@ -79,6 +79,9 @@ int main()
         // extract and print the ip header
         struct iphdr *iph = (struct iphdr *)buffer;
         print_ipheader(iph);
+        // printing the payload
+        cout << "Payload: ";
+        cout<<buffer+iph->ihl*4<<endl;
 
         memset(buffer, 0, MAXLINE);
         cnt++;

@@ -17,6 +17,7 @@ int main()
     int pid = fork();
     if (pid == 0)
     {
+        // child
         close(parent_child_pipe[0]);
         close(child_parent_pipe[1]);
         char message[100];
@@ -40,6 +41,7 @@ int main()
     }
     else
     {
+        //parnt
         close(parent_child_pipe[1]);
         close(child_parent_pipe[0]);
         char message[100];

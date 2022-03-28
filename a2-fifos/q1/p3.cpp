@@ -14,10 +14,12 @@ string file_name = "demo";
 int main()
 {
     cout << "Starting p3\n";
+    // creating the fifo
     mkfifo(file_name.c_str(), 0777);
     while (1)
     {
         char buff[100];
+        // opening with write only
         int fifo_fd = open(file_name.c_str(), O_WRONLY);
         read(0, buff, 100);
         if (strcmp(buff, "exit") == 0)

@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     }
     cout<<"My protocol number is "<<protocol_number<<endl;
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    // addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     while (true)

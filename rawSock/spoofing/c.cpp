@@ -34,7 +34,15 @@ unsigned short csum(unsigned short *buf, int nwords)
 
 int main()
 {
-    int s = socket(PF_INET, SOCK_RAW, 1);
+    /* 
+        To send the packet of any protocol, we can use IPPROTO_RAW
+        in the protocol parameter of the socket()
+        or 
+        we can use a specific protocol number in the socket() and
+        use the IP_HDRINCL option with setsockopt() so that we are 
+        saying kernel not to create its own header
+     */
+    int s = socket(AF_INET, SOCK_RAW, 1);
     if (s < 0)
         cout << "Hi";
     char buff[4096] = "hello";
@@ -61,6 +69,9 @@ int main()
     iph->check = csum((unsigned short *)buff, iph->tot_len);
     int opt = 1;
     const int *val = &opt;
+
+    /* needed if we want to include our header file */
+    
     if (setsockopt(s, IPPROTO_IP, IP_HDRINCL, val, sizeof(opt)) < 0)
     {
         cout << "could not set HDRINCL...\n";
