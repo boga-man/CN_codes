@@ -72,11 +72,11 @@ int main(int argc, char *argv[])
 
     // optional if only single ip address is present to the system
     // but have to use bind() when multiple ip address is present
-    addr.sin_family = AF_INET;
-    // addr.sin_port = htons(PORT);
-    addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    bind(rsfd, (const struct sockaddr *)&addr,
-         sizeof(addr));
+    // addr.sin_family = AF_INET;
+    // // addr.sin_port = htons(PORT);
+    // addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    // bind(rsfd, (const struct sockaddr *)&addr,
+    //      sizeof(addr));
 
     while (true)
     {
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
         for (int i = 0; i < MAXLINE; i++)
             tempBuff[i] = buffer[i];
         struct iphdr *iph = (struct iphdr *)buffer;
-        // print_ipheader(iph);
+        print_ipheader(iph);
 
         unsigned short ip_head_len = iph->ihl * 4;
         struct tcphdr *tcp_head = (struct tcphdr *)(tempBuff + ip_head_len);

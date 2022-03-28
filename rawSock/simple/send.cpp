@@ -15,16 +15,18 @@
 #include <arpa/inet.h>
 #include <bits/stdc++.h>
 using namespace std;
+
 #define PORT 8080
 #define MAXLINE 1024
 #define MSG_CONFIRM 0x800
+
 int main(int argc, char *argv[])
 {
-    int sfd;
+    int rsfd;
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     // cout<<"My protocol number is 2"<<endl;
-    // if ((sfd = socket(AF_INET, SOCK_RAW, 2)) < 0)
+    // if ((rsfd = socket(AF_INET, SOCK_RAW, 2)) < 0)
     // {
     //     perror("socket creation failed");
     //     exit(EXIT_FAILURE);
@@ -36,7 +38,7 @@ int main(int argc, char *argv[])
         return -1;
     }
     int protocol_number = atoi(argv[1]);
-    if ((sfd = socket(AF_INET, SOCK_RAW, protocol_number)) < 0)
+    if ((rsfd = socket(AF_INET, SOCK_RAW, protocol_number)) < 0)
     {
         perror("socket creation failed");
         exit(EXIT_FAILURE);
@@ -52,11 +54,11 @@ int main(int argc, char *argv[])
         char buffer[MAXLINE];
         cout << "Enter text : ";
         getline(cin, s);
-        sendto(sfd, s.c_str(), s.size(),
+        sendto(rsfd, s.c_str(), s.size(),
                0, (const struct sockaddr *)&addr, sizeof(addr));
         memset(buffer, 0, MAXLINE);
     }
 
-    close(sfd);
+    close(rsfd);
     return 0;
 }
