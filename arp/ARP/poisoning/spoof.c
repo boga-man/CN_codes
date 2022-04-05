@@ -235,26 +235,17 @@ int send_ARPreply_to_target(int rsfd, struct sockaddr_ll *sa, uint8_t *my_mac, c
 uint8_t *get_my_mac(int rsfd, char *device)
 
 {
-
     struct ifreq ifreq;
-
     uint8_t *mac;
-
     memset(&ifreq, 0, sizeof(struct ifreq));
-
     strncpy(ifreq.ifr_name, device, sizeof(ifreq.ifr_name) - 1);
-
     if (ioctl(rsfd, SIOCGIFHWADDR, &ifreq) < 0)
-
     {
-
         perror("ERROR: SIOCGIFHWADDR\n");
-
         return NULL;
     }
 
     mac = malloc(HARDWARE_LENGTH);
-
     memcpy(mac, ifreq.ifr_hwaddr.sa_data, sizeof(uint8_t) * HARDWARE_LENGTH);
 
     return mac;
@@ -263,45 +254,30 @@ uint8_t *get_my_mac(int rsfd, char *device)
 int main(int argc, char *argv[])
 
 {
-
     int rsfd;
-
     struct sockaddr_ll sa;
-
     char *spoofed_ip, *target_ip, *interface;
-
     uint8_t *my_mac, *target_mac;
 
     if (argc != 4)
-
     {
-
         fprintf(stderr, "Usage[%s]: Spoofed_IP, Target_IP, Interface_name\n", argv[0]);
-
         return -1;
     }
 
     spoofed_ip = argv[1];
-
     target_ip = argv[2];
-
     interface = argv[3];
 
     if ((rsfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ARP))) < 0)
-
     {
-
         fprintf(stderr, "ERROR: Socket_Creation_Failed\n");
-
         return -1;
     }
 
     if ((my_mac = get_my_mac(rsfd, interface)) < 0)
-
     {
-
         perror("ERROR: Get_My_MAC\n");
-
         return -1;
     }
 
